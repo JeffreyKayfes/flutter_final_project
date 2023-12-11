@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-part 'task.g.dart';
+part 'game.g.dart';
 
 @HiveType(typeId: 0)
 class Game {
