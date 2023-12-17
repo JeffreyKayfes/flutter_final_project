@@ -19,33 +19,46 @@ class GameListTile extends StatelessWidget {
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
+          child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Game #${index + 1}', // Display the index (add 1 to start from 1)
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Game #${index + 1}', // Display the index (add 1 to start from 1)
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Row(
+                      children: [
+                        buildStatText('Points', game.points),
+                        buildStatText('Rebounds', game.rebounds),
+                        buildStatText('Assists', game.assists),
+                        buildStatText('Steals', game.steals),
+                      ],
+                    ),
+                    SizedBox(height: 8),
+                    Row(
+                      children: [
+                        buildStatText('Blocks', game.blocks),
+                        buildStatText('FG%', calculateFieldGoalPercentage(game.fgm, game.fga)),
+                        buildStatText('3P%', calculateThreePointPercentage(game.threesMade, game.threesAttempted)),
+                        buildStatText('FT%', calculateFreeThrowPercentage(game.ftm, game.fta)),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(height: 8),
-              Row(
-                children: [
-                  buildStatText('Points', game.points),
-                  buildStatText('Rebounds', game.rebounds),
-                  buildStatText('Assists', game.assists),
-                  buildStatText('Steals', game.steals),
-                ],
-              ),
-              SizedBox(height: 8),
-              Row(
-                children: [
-                  buildStatText('Blocks', game.blocks),
-                  buildStatText('FG%', calculateFieldGoalPercentage(game.fgm, game.fga)),
-                  buildStatText('3P%', calculateThreePointPercentage(game.threesMade, game.threesAttempted)),
-                  buildStatText('FT%', calculateFreeThrowPercentage(game.ftm, game.fta)),
-                ],
+              // Add a basketball icon to the right side of the card
+              Icon(
+                Icons.sports_basketball_sharp,
+                size: 40,
+                color: Colors.orange,
               ),
             ],
           ),

@@ -44,4 +44,3 @@ class Game {
     required this.fta,
   });
 }
-
